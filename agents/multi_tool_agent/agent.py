@@ -29,7 +29,7 @@ SPECIFIC_AGENT_MODEL = os.getenv("SPECIFIC_AGENT_MODEL", "gemini-2.0-flash")
 # print(f"SPECIFIC_AGENT_MODEL: {SPECIFIC_AGENT_MODEL}")
 
 # Setup Vertex AI
-if GOOGLE_GENAI_USE_VERTEXAI:
+if GOOGLE_GENAI_USE_VERTEXAI and GOOGLE_GENAI_USE_VERTEXAI.lower() == "true":
     print("Setting up Vertex AI...")
     setup_vertexai(
         project=PROJECT,

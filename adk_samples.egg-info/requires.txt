@@ -1,0 +1,11 @@
+black
+google-adk
+python-dotenv
+
+[dev]
+pylint
+pytest>=8.0
+pytest-cov
+mypy
+isort>=5.13
+IPython

@@ -1,0 +1,115 @@
+Metadata-Version: 2.4
+Name: adk-samples
+Version: 0.1.0
+Summary: Hands on Agent Development Kit(ADK)
+Author-email: Your Name <your.email@example.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/caron14/adk-samples
+Project-URL: Bug Tracker, https://github.com/caron14/adk-samples/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: black
+Requires-Dist: google-adk
+Requires-Dist: python-dotenv
+Provides-Extra: dev
+Requires-Dist: pylint; extra == "dev"
+Requires-Dist: pytest>=8.0; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: isort>=5.13; extra == "dev"
+Requires-Dist: IPython; extra == "dev"
+Dynamic: requires-python
+
+# ADK Sample Agents Repository
+
+This repository provides a collection of sample AI agents and reference implementations for both Python and Java. It is designed to help developers understand, customize, and deploy various agent-based solutions using the Agent Development Kit (ADK). Each agent is organized as an independent project with its own documentation, code, and deployment resources. Common utilities and shared modules are also included for reuse and extension.
+
+## Getting Started
+
+1. Clone the repository:
+```bash
+git clone https://github.com/caron14/adk-samples.git
+```
+
+2. Navigate to the project directory:
+```bash
+cd adk-samples
+```
+
+3. Install the required dependencies:
+```bash
+uv sync
+```
+
+The dependency for development can be installed:
+```bash
+uv sync --extra dev
+```
+
+4. Set up the environment variables:
+   Create a `.env` file in the root directory and add the following variables:
+   ```env
+   GOOGLE_GENAI_USE_VERTEXAI=TRUE
+   GOOGLE_CLOUD_PROJECT=YOUR_PROJECT_ID
+   GOOGLE_CLOUD_LOCATION=LOCATION
+   ```
+5. If you are using Google Cloud Vertex AI, ensure you have the necessary permissions and have set up your Google Cloud project as described in the [Set up the model](#set-up-the-model) section below.
+   If you are using a different model, adjust the environment variables accordingly.
+   For example, if you are using OpenAI, you might need to set `OPENAI_API_KEY` and other relevant variables.
+   ```env
+    ROOT_AGENT_MODEL='your-root-agent-model-id' # ex. 'gemini-2.0-flash-lite-001'
+    SPECIFIC_AGENT_MODEL='your-specific-agent-model-id' # ex. 'gemini-2.0-flash-lite-001'
+    ```
+6. Run the agent:
+   ```bash
+   python -m agents.<agent_name>
+   ```
+
+## Development Tools
+pylint/balck/isort/mypy/pytest
+```bash
+uv run pylint $(git ls-files '*.py')
+uv run black .
+uv run isort .
+uv run mypy .
+uv run pytest
+```
+
+Test the black formatter to ensure the CI pipeline will pass:
+```bash
+uv run black --check --diff .
+```
+
+# ADK Sample Agents Repository
+
+## Repository Structure
+
+- `agents/`
+  - Common agent-related code and utilities.
+- `common/`
+  - Shared utilities and setup scripts used across agents.
+- Root files
+  - `pyproject.toml`, `README.md`, `uv.lock`, etc. — project-wide configuration and documentation files.
+
+## Set up the model
+
+Gemini - Google Cloud Vertex AI
+1. You need an existing Google Cloud account and a project.
+- Set up a Google Cloud project
+- Set up the gcloud CLI
+- Authenticate to Google Cloud, from the terminal by running gcloud auth login.
+- Enable the Vertex AI API.
+
+2. When using Python, open the .env file. Copy-paste the following code and update the project ID and location.
+
+```env
+GOOGLE_GENAI_USE_VERTEXAI=TRUE
+GOOGLE_CLOUD_PROJECT=YOUR_PROJECT_ID
+GOOGLE_CLOUD_LOCATION=LOCATION
+```
+
+## Reference:
+- https://google.github.io/adk-docs/
