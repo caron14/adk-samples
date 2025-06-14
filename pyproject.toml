@@ -23,6 +23,7 @@ dependencies = [
     "pytest-cov",
     "google-adk",
     "python-dotenv",
+    "yfinance>=0.2.63",
 ]
 
 [project.optional-dependencies]
