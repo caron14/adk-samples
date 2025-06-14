@@ -36,7 +36,7 @@ def validate_ticker(ticker: str) -> dict:
             return {"status": "success", "ticker": ticker.upper()}
         return {
             "status": "error",
-            "error_message": f"Ticker '{ticker}' not found.",
+            "error_message": f"Ticker '{ticker.upper()}' not found.",
         }
     except Exception as err:  # pragma: no cover - network
         return {"status": "error", "error_message": str(err)}
