@@ -6,13 +6,13 @@ from google.adk.agents import Agent
 REPO_PATH = os.path.realpath(os.path.dirname(os.path.realpath("__file__")))
 sys.path.append(REPO_PATH)
 
+from agents.common.util import load_env
+from agents.common.vertex_setup import setup_vertexai
 from agents.multi_tool_agent import (
+    get_city_weather_candidates,
+    get_city_timezones_candidates,
     get_current_time,
     get_weather,
-)
-from common import (
-    load_env,
-    setup_vertexai,
 )
 
 load_env()
@@ -45,5 +45,10 @@ root_agent = Agent(
     instruction=(
         "You are a helpful agent who can answer user questions about the time and weather in a city."
     ),
-    tools=[get_weather, get_current_time],
+    tools=[
+        get_city_timezones_candidates,
+        get_city_weather_candidates,
+        get_weather,
+        get_current_time,
+    ],
 )
