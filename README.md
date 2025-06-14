@@ -53,6 +53,11 @@ uv run mypy .
 uv run pytest  
 ```
 
+Test the black formatter to ensure the CI pipeline will pass:
+```bash
+uv run black --check --diff .
+```
+
 # ADK Sample Agents Repository
 
 ## Repository Structure
