@@ -1,0 +1,8 @@
+uv.lock
+.venv/*
+.env
+adk_handson.egg-info/*
+adk-samples/*
+common/__pycache__/*
+agents/__pycache__/*
+agents/multi_tool_agent/__pycache__/*

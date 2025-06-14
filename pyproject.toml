@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adk-samples"
+version = "0.1.0"
+description = "Hands on Agent Development Kit(ADK)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "google-adk",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "pytest",
+    "pytest-cov",
+    "mypy",
+    "isort",
+    "IPython",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/yourusername/agent_blog"
+"Bug Tracker" = "https://github.com/yourusername/agent_blog/issues"
+
+[tool.black]
+line-length = 79
+target-version = ["py310"]
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
