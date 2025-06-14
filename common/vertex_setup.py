@@ -1,14 +1,19 @@
 import os
 import sys
+from dotenv import find_dotenv, load_dotenv
 
 import vertexai
 from vertexai.generative_models import GenerativeModel
 
 REPO_PATH = os.path.realpath(os.path.dirname(os.path.realpath("__file__")))
 sys.path.append(REPO_PATH)
-from common import load_env
 
-load_env()
+# Load environment directly to avoid circular import
+def load_env_local():
+    """Load environment variables from .env file."""
+    _ = load_dotenv(find_dotenv())
+
+load_env_local()
 GOOGLE_GENAI_USE_VERTEXAI = os.getenv("GOOGLE_GENAI_USE_VERTEXAI")
 PROJECT = os.getenv("GOOGLE_CLOUD_PROJECT")
 REGION = os.getenv("GOOGLE_CLOUD_LOCATION")
