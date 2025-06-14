@@ -7,15 +7,14 @@ name = "adk-samples"
 version = "0.1.0"
 description = "Hands on Agent Development Kit(ADK)"
 readme = "README.md"
-requires-python = ">=3.10"
-license = {text = "MIT"}
+requires-python = ">=3.11"
+license = "MIT"
 authors = [
     {name = "Your Name", email = "your.email@example.com"},
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
     "Operating System :: OS Independent",
 ]
 dependencies = [
@@ -25,28 +24,35 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "black",
-    "pytest",
+    "black>=25.1.0",
+    "pylint",
+    "pytest>=8.0",
     "pytest-cov",
     "mypy",
-    "isort",
+    "isort>=5.13",
     "IPython",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/yourusername/agent_blog"
-"Bug Tracker" = "https://github.com/yourusername/agent_blog/issues"
+"Homepage" = "https://github.com/caron14/adk-samples"
+"Bug Tracker" = "https://github.com/caron14/adk-samples/issues"
+
+[tool.setuptools]
+packages = ["agents", "common"]
+
+# Removing the packages.find section as it conflicts with explicit package definition
+# If we want to use find_packages later, we can re-enable this in a compatible way
 
 [tool.black]
 line-length = 79
-target-version = ["py310"]
+target-version = ["py311"]
 
 [tool.isort]
 profile = "black"
 line_length = 79
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
