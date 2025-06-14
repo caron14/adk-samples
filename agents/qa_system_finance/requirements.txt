@@ -1,0 +1,3 @@
+yfinance
+duckduckgo-search
+python-dotenv
