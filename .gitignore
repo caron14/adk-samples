@@ -7,3 +7,4 @@ common/__pycache__/*
 agents/__pycache__/*
 agents/multi_tool_agent/__pycache__/*
 agents/common/__pycache__/*
+tests/__pycache__/*
