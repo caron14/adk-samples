@@ -21,6 +21,9 @@ SPECIFIC_AGENT_MODEL = os.getenv("SPECIFIC_AGENT_MODEL", "gemini-2.0-flash")
 if GOOGLE_GENAI_USE_VERTEXAI:
     setup_vertexai(project=PROJECT, region=REGION)
 
+"""
+Sub-Agents as a Tool
+"""
 ticker_validation_agent = LlmAgent(
     name="ticker_validator",
     model=SPECIFIC_AGENT_MODEL,
@@ -63,6 +66,9 @@ sentiment_agent = LlmAgent(
     tools=[analyze_sentiment],
 )
 
+"""
+Supervisor Agent
+"""
 root_agent = LlmAgent(
     name="finance_supervisor",
     model=ROOT_AGENT_MODEL,
