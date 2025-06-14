@@ -21,7 +21,7 @@ if GOOGLE_GENAI_USE_VERTEXAI:
 
 ticker_validation_agent = LlmAgent(
     name="ticker_validator",
-    model="gemini-2.0-pro",
+    model=MODEL_NAME,
     instruction=(
         "Use the validate_ticker tool to check if the ticker provided by the "
         "user exists on Yahoo Finance. If the ticker is invalid, return an "
