@@ -15,13 +15,15 @@ load_env()
 GOOGLE_GENAI_USE_VERTEXAI = os.getenv("GOOGLE_GENAI_USE_VERTEXAI")
 PROJECT = os.getenv("GOOGLE_CLOUD_PROJECT")
 REGION = os.getenv("GOOGLE_CLOUD_LOCATION")
+ROOT_AGENT_MODEL = os.getenv("ROOT_AGENT_MODEL", "gemini-2.0-flash")
+SPECIFIC_AGENT_MODEL = os.getenv("SPECIFIC_AGENT_MODEL", "gemini-2.0-flash")
 
 if GOOGLE_GENAI_USE_VERTEXAI:
     setup_vertexai(project=PROJECT, region=REGION)
 
 ticker_validation_agent = LlmAgent(
     name="ticker_validator",
-    model=MODEL_NAME,
+    model=SPECIFIC_AGENT_MODEL,
     instruction=(
         "Use the validate_ticker tool to check if the ticker provided by the "
         "user exists on Yahoo Finance. If the ticker is invalid, return an "
@@ -33,7 +35,7 @@ ticker_validation_agent = LlmAgent(
 
 news_retrieval_agent = LlmAgent(
     name="news_retriever",
-    model="gemini-2.0-pro",
+    model=SPECIFIC_AGENT_MODEL,
     instruction=(
         "Retrieve recent news for the validated ticker during the specified "
         "week using search_news. Provide a list of headlines and short "
@@ -44,7 +46,7 @@ news_retrieval_agent = LlmAgent(
 
 financial_summary_agent = LlmAgent(
     name="financial_summary",
-    model="gemini-2.0-pro",
+    model=SPECIFIC_AGENT_MODEL,
     instruction=(
         "Gather recent earnings or financial statement information using "
         "summarize_financials for the validated ticker."
@@ -54,7 +56,7 @@ financial_summary_agent = LlmAgent(
 
 sentiment_agent = LlmAgent(
     name="sentiment_analyzer",
-    model="gemini-2.0-pro",
+    model=SPECIFIC_AGENT_MODEL,
     instruction=(
         "Evaluate the sentiment of the news articles using analyze_sentiment."
     ),
@@ -63,7 +65,7 @@ sentiment_agent = LlmAgent(
 
 root_agent = LlmAgent(
     name="finance_supervisor",
-    model="gemini-2.0-pro",
+    model=ROOT_AGENT_MODEL,
     description="Supervisor agent for stock price movement analysis.",
     instruction=(
         "You converse with the user to obtain a stock ticker and week. "
