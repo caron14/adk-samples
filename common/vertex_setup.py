@@ -8,10 +8,12 @@ from vertexai.generative_models import GenerativeModel
 REPO_PATH = os.path.realpath(os.path.dirname(os.path.realpath("__file__")))
 sys.path.append(REPO_PATH)
 
+
 # Load environment directly to avoid circular import
 def load_env_local():
     """Load environment variables from .env file."""
     _ = load_dotenv(find_dotenv())
+
 
 load_env_local()
 GOOGLE_GENAI_USE_VERTEXAI = os.getenv("GOOGLE_GENAI_USE_VERTEXAI")
