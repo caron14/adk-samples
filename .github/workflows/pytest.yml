@@ -1,4 +1,4 @@
-name: Pylint
+name: Pytest
 
 on: [push]
 
@@ -18,6 +18,6 @@ jobs:
       uses: astral-sh/setup-uv@v4
     - name: Install dependencies
       run: uv sync --dev
-    - name: Analysing the code with pylint
+    - name: Run tests with pytest
       run: |
-        uv run pylint $(git ls-files '*.py')
+        uv run pytest
