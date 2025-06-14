@@ -24,6 +24,7 @@ dependencies = [
     "google-adk",
     "python-dotenv",
     "yfinance>=0.2.63",
+    "langchain-core>=0.3.65",
 ]
 
 [project.optional-dependencies]
