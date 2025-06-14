@@ -6,13 +6,13 @@ from google.adk.agents import Agent
 REPO_PATH = os.path.realpath(os.path.dirname(os.path.realpath("__file__")))
 sys.path.append(REPO_PATH)
 
+from agents.multi_tool_agent import (
+    get_current_time,
+    get_weather,
+)
 from common import (
     load_env,
     setup_vertexai,
-)
-from agents.multi_tool_agent import (
-    get_weather,
-    get_current_time,
 )
 
 load_env()
@@ -47,4 +47,3 @@ root_agent = Agent(
     ),
     tools=[get_weather, get_current_time],
 )
-
