@@ -1,9 +1,11 @@
 uv.lock
 .venv/*
 .env
+tests/*
 adk_handson.egg-info/*
 adk-samples/*
 common/__pycache__/*
 agents/__pycache__/*
 agents/multi_tool_agent/__pycache__/*
 agents/common/__pycache__/*
+adk_samples.egg-info/*
