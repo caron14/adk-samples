@@ -60,7 +60,7 @@ def search_news(query: str, start: datetime, end: datetime) -> dict:
                 articles.append(
                     {"title": title, "url": link, "snippet": snippet}
                 )
-            if len(articles) >= 5:
+            if len(articles) >= MAX_ARTICLES:
                 break
         return {"status": "success", "articles": articles}
     except Exception as err:  # pragma: no cover - network
