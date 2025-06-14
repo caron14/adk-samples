@@ -38,7 +38,7 @@ dev = [
 "Bug Tracker" = "https://github.com/caron14/adk-samples/issues"
 
 [tool.setuptools]
-packages = ["agents", "common"]
+packages = ["agents"]
 
 # Removing the packages.find section as it conflicts with explicit package definition
 # If we want to use find_packages later, we can re-enable this in a compatible way
