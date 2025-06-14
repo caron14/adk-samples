@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: uv sync --dev
     - name: Install isort
-      run: uv add isort
+      run: pip install isort
     - name: Check import sorting with isort
       run: |
         uv run isort --check-only --diff .
