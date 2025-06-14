@@ -19,6 +19,8 @@ classifiers = [
 ]
 dependencies = [
     "black",
+    "pytest",
+    "pytest-cov",
     "google-adk",
     "python-dotenv",
 ]
@@ -26,8 +28,6 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pylint",
-    "pytest>=8.0",
-    "pytest-cov",
     "mypy",
     "isort>=5.13",
     "IPython",
