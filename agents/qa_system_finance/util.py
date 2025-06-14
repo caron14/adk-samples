@@ -2,6 +2,9 @@ import json
 from datetime import datetime
 from urllib.parse import quote_plus
 from urllib.request import Request, urlopen
+from typing import Dict, List
+
+import yfinance as yf
 
 POSITIVE_WORDS = {
     "gain",
@@ -21,28 +24,26 @@ NEGATIVE_WORDS = {
     "decline",
 }
 
+MAX_ARTICLES = 10
 
-def validate_ticker(ticker: str) -> dict:
-    """Validate ticker symbol using Yahoo Finance."""
-    url = (
-        "https://query1.finance.yahoo.com/v7/finance/quote?symbols="
-        + quote_plus(ticker)
-    )
+
+def validate_ticker(ticker: str) -> Dict[str, str]:
+    """Validate ticker symbol using yfinance."""
     try:
-        with urlopen(url) as resp:
-            data = json.load(resp)
-        result = data.get("quoteResponse", {}).get("result", [])
-        if result:
+        t = yf.Ticker(ticker)
+        info = t.info
+        # yfinance returns an empty dict for invalid tickers
+        if info and info.get("regularMarketPrice") is not None:
             return {"status": "success", "ticker": ticker.upper()}
         return {
             "status": "error",
             "error_message": f"Ticker '{ticker.upper()}' not found.",
         }
-    except Exception as err:  # pragma: no cover - network
+    except Exception as err:
         return {"status": "error", "error_message": str(err)}
 
 
-def search_news(query: str, start: datetime, end: datetime) -> dict:
+def search_news(query: str, start: datetime, end: datetime) -> Dict[str, List[Dict[str, str]]]:
     """Search news on DuckDuckGo between start and end dates."""
     date_range = f"{start.strftime('%Y-%m-%d')}..{end.strftime('%Y-%m-%d')}"
     q = quote_plus(f"{query} {date_range}")
@@ -67,7 +68,7 @@ def search_news(query: str, start: datetime, end: datetime) -> dict:
         return {"status": "error", "error_message": str(err)}
 
 
-def summarize_financials(ticker: str) -> dict:
+def summarize_financials(ticker: str) -> Dict[str, Dict[str, str]]:
     """Fetch simple earnings summary from Yahoo Finance."""
     url = (
         "https://query1.finance.yahoo.com/v10/finance/quoteSummary/"
@@ -83,7 +84,7 @@ def summarize_financials(ticker: str) -> dict:
         return {"status": "error", "error_message": str(err)}
 
 
-def analyze_sentiment(text: str) -> dict:
+def analyze_sentiment(text: str) -> Dict[str, str]:
     """Very small sentiment analyzer based on word lists."""
     lower = text.lower()
     score = 0
@@ -100,3 +101,7 @@ def analyze_sentiment(text: str) -> dict:
     else:
         sentiment = "neutral"
     return {"status": "success", "sentiment": sentiment, "score": score}
+
+
+if __name__ == "__main__":
+    pass
