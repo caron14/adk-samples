@@ -1,0 +1,34 @@
+[project]
+name = "qa_system_finance"
+version = "0.1.0"
+description = "A stock analysis agent workflow using Google ADK."
+readme = "README.md"
+requires-python = ">=3.10" # ADK often requires newer Python versions
+license = { file = "LICENSE" } # Assuming MIT or similar, add LICENSE file later if needed
+
+dependencies = [
+    "google-agent-development-kit>=0.0.8", # Specify a version or range if known, 0.0.8 is an example
+    "yfinance>=0.2.30", # yfinance is actively updated
+    "duckduckgo-search>=5.0.0", # Check for latest compatible version
+    "python-dotenv>=1.0.0",
+    "nltk>=3.8.0", # Added NLTK
+    # Add other dependencies like nltk or spacy if/when those optional agents are built
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "ruff>=0.1.0", # For linting
+]
+
+[project.scripts]
+# If we want a callable script, e.g., "finance_agent"
+# finance_agent = "qa_system_finance.main:run_cli_sync" # If main_cli had a sync wrapper or was sync
+
+[tool.ruff]
+# Ruff linter settings (example)
+line-length = 88
+select = ["E", "F", "W", "I"] # Standard checks + isort
+
+[tool.setuptools]
+packages = ["qa_system_finance"] # Important for making the package installable
