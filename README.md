@@ -65,3 +65,6 @@ uv run pytest -q
 
 ## Reference:
 - https://google.github.io/adk-docs/
+
+**Prompting Guide by OpenAI**
+- [GPT4.1 Prompting Guide](https://media.licdn.com/dms/document/media/v2/D4E1FAQFJukaW0z5PDQ/feedshare-document-pdf-analyzed/B4EZZFAKJ_HUAY-/0/1744914403183?e=1751500800&v=beta&t=x5kdIh02AnRy7Uom2qAjVGT7lUree73zxJqRU7P9B3k)
